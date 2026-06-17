@@ -1,0 +1,61 @@
+@import "tailwindcss";
+
+:root {
+  --linen: #f9f4e8;
+  --cinnamon: #a66346;
+  --cinnamon-dark: #8d5b3e;
+  --olive: #7b9355;
+  --olive-light: #9aad78;
+  --sky: #5dade2;
+  --sun: #e8b84a;
+  --text: #3d3429;
+  --text-muted: #5c5348;
+}
+
+@theme inline {
+  --color-linen: var(--linen);
+  --color-cinnamon: var(--cinnamon);
+  --color-cinnamon-dark: var(--cinnamon-dark);
+  --color-olive: var(--olive);
+  --color-olive-light: var(--olive-light);
+  --color-sky: var(--sky);
+  --color-sun: var(--sun);
+  --color-text: var(--text);
+  --color-text-muted: var(--text-muted);
+  --font-sans: var(--font-nunito), system-ui, sans-serif;
+  --font-display: var(--font-fredoka), system-ui, sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+body {
+  background: var(--linen);
+  color: var(--text);
+  font-family: var(--font-nunito), system-ui, sans-serif;
+}
+
+::selection {
+  background: color-mix(in srgb, var(--olive) 35%, transparent);
+  color: var(--text);
+}
+
+:focus-visible {
+  outline: 2px solid var(--cinnamon);
+  outline-offset: 3px;
+}
