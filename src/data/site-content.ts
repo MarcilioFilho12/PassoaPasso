@@ -10,7 +10,7 @@ export const siteContent: SiteContent = {
   meta: {
     title: "Passo a Passo | Recreação Infantil",
     description:
-      "Espaço acolhedor de recreação infantil para crianças de 3 a 6 anos. Acolhimento, vínculo, natureza, leveza e segurança emocional. Aqui a infância é tratada com carinho e afeto.",
+      "Espaço acolhedor de recreação infantil para crianças a partir dos 3 anos. Acolhimento, vínculo, natureza, leveza e segurança emocional. Aqui a infância é tratada com carinho e afeto.",
   },
   hero: {
     eyebrow: "Recreação infantil com acolhimento e afeto",
@@ -18,12 +18,16 @@ export const siteContent: SiteContent = {
       "Um ambiente pensado para que cada criança se sinta segura, livre e principalmente acolhida.",
     subtitle:
       "Na Passo a Passo, acreditamos que o desenvolvimento acontece através do vínculo, do brincar e de experiências vividas com presença e acolhimento.",
-    cta: { label: "Falar conosco", href: "#contato" },
-    // secondaryCta: { label: "Conheça a vivência", href: "#vivencia" },
-    secondaryCta: { label: "Conheça a vivência", href: "#quem-somos" },
-    image: placeholder(
-      "luz natural, tons suaves, madeira, natureza, criança brincando com liberdade",
-    ),
+    cta: { label: "Falar conosco", href: siteConfig.urls.whatsapp },
+    secondaryCta: { label: "Conheça a vivência", href: "#vivencia" },
+    image: {
+      src: "/semtelas.jpeg",
+      alt: "Criança brincando ao ar livre — Passo a Passo Recreação Infantil",
+    },
+    secondaryImage: {
+      src: "/atividades.jpeg",
+      alt: "Criança em atividade ao ar livre — Passo a Passo Recreação Infantil",
+    },
   },
   quemSomos: {
     title: "Quem Somos",
@@ -35,8 +39,8 @@ export const siteContent: SiteContent = {
       "A Passo a Passo foi pensada para que seja uma extensão de cuidado, pertencimento e afeto — quase como uma segunda casa.",
     ],
     image: {
-      src: "/Captura de tela 2026-06-09 142053.png",
-      alt: "Agnes no ambiente, maternidade e leveza — Passo a Passo Recreação Infantil",
+      src: "/quem-somos.png",
+      alt: "Agnes e Kaleo no ambiente natural, maternidade e leveza — Passo a Passo Recreação Infantil",
     },
   },
   vivencia: {
@@ -44,13 +48,19 @@ export const siteContent: SiteContent = {
     quote:
       "Acreditamos em uma infância leve, presente e vivida com tempo para brincar, explorar, sentir e criar memórias afetivas.",
     items: [
-      { label: "Brincar livre", image: placeholder("brincar livre") },
+      {
+        label: "Brincar livre",
+        image: {
+          src: "/brincar-livre.png",
+          alt: "Criança brincando livre em escada de corda na natureza — Passo a Passo Recreação Infantil",
+        },
+      },
       { label: "Imaginação", image: placeholder("imaginação") },
       {
         label: "Sem telas",
         image: {
-          src: "/roosevel-cassio-869.png",
-          alt: "Criança em atividade sensorial sem telas — Passo a Passo Recreação Infantil",
+          src: "/semtelas.jpeg",
+          alt: "Criança brincando ao ar livre sem telas — Passo a Passo Recreação Infantil",
         },
       },
       {
@@ -63,8 +73,8 @@ export const siteContent: SiteContent = {
       {
         label: "Natureza",
         image: {
-          src: "/20190923_153536.jpg",
-          alt: "Crianças colhendo frutas da natureza — Passo a Passo Recreação Infantil",
+          src: "/atividades.jpeg",
+          alt: "Criança em contato com a natureza — Passo a Passo Recreação Infantil",
         },
       },
       {
@@ -116,8 +126,8 @@ export const siteContent: SiteContent = {
   informacoes: {
     title: "Informações Práticas",
     items: [
-      { label: "Faixa etária", value: "3 a 6 anos" },
-      { label: "Horário", value: "13h às 18h" },
+      { label: "Faixa etária", value: "A partir dos 3 anos" },
+      { label: "Horário", value: "Segunda a Sexta - 13h às 18h" },
       { label: "Período", value: "Vespertino" },
       {
         label: "Endereço",

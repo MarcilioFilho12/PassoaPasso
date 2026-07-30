@@ -1,83 +1,94 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
+import Link from "next/link";
+import { Menu, X } from "lucide-react";
 import { navLinks } from "@/constants/nav";
-import { Logo } from "@/components/shared/Logo";
+import { siteConfig } from "@/constants/site";
+import { WhatsAppButton } from "@/components/shared/WhatsAppButton";
 import { cn } from "@/lib/cn";
 
 export function Header() {
   const [open, setOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-50 px-3 md:px-6">
-      <div className="mx-auto flex max-w-6xl items-center justify-between gap-3 rounded-b-3xl border border-t-0 border-olive/10 bg-linen/90 px-4 py-2 shadow-sm backdrop-blur-md md:rounded-b-full md:px-6 md:py-2.5">
-        <Logo variant="header" />
+    <header className="sticky top-0 z-50 border-b border-border/60 bg-cream/90 backdrop-blur-md">
+      <div className="mx-auto grid max-w-6xl grid-cols-[minmax(0,1fr)_auto] items-center gap-4 px-5 py-2.5">
+        <Link
+          href="#inicio"
+          className="flex min-w-0 items-center gap-3"
+          aria-label="Passo a Passo — voltar ao início"
+        >
+          <Image
+            src={siteConfig.brand.logoCircle}
+            alt="Passo a Passo Recreação Infantil"
+            width={112}
+            height={112}
+            className="h-20 w-20 shrink-0 rounded-full object-contain sm:h-24 sm:w-24"
+            priority
+            quality={100}
+          />
+        </Link>
 
         <nav
-          className="hidden items-center gap-1 lg:flex"
+          className="hidden items-center gap-6 text-sm font-semibold sm:flex"
           aria-label="Navegação principal"
         >
           {navLinks.map((link) => (
             <a
               key={link.href}
               href={link.href}
-              className="rounded-full px-3 py-2 text-sm font-medium text-text-muted transition-colors hover:bg-olive/10 hover:text-cinnamon-dark"
+              className="text-text-muted transition-colors hover:text-olive-deep"
             >
               {link.label}
             </a>
           ))}
+          <WhatsAppButton
+            href={siteConfig.urls.whatsapp}
+            className="rounded-full bg-olive-deep px-4 py-2 text-cream shadow-sm transition-colors hover:opacity-90"
+          >
+            Fale conosco
+          </WhatsAppButton>
         </nav>
 
         <button
           type="button"
-          className="flex h-10 w-10 flex-col items-center justify-center gap-1.5 rounded-full border border-olive/20 lg:hidden"
+          className="flex h-10 w-10 items-center justify-center rounded-full border border-border text-olive-deep sm:hidden"
           aria-expanded={open}
           aria-controls="mobile-menu"
           aria-label={open ? "Fechar menu" : "Abrir menu"}
-          onClick={() => setOpen(!open)}
+          onClick={() => setOpen((prev) => !prev)}
         >
-          <span
-            className={cn(
-              "block h-0.5 w-5 bg-cinnamon transition-transform",
-              open && "translate-y-2 rotate-45",
-            )}
-          />
-          <span
-            className={cn(
-              "block h-0.5 w-5 bg-cinnamon transition-opacity",
-              open && "opacity-0",
-            )}
-          />
-          <span
-            className={cn(
-              "block h-0.5 w-5 bg-cinnamon transition-transform",
-              open && "-translate-y-2 -rotate-45",
-            )}
-          />
+          {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
         </button>
       </div>
 
       <div
         id="mobile-menu"
         className={cn(
-          "mx-auto mt-2 max-w-6xl overflow-hidden rounded-3xl border border-olive/10 bg-linen/95 shadow-lg backdrop-blur-md transition-all lg:hidden",
-          open
-            ? "max-h-96 opacity-100"
-            : "pointer-events-none max-h-0 opacity-0 border-transparent",
+          "border-t border-border/60 bg-cream sm:hidden",
+          open ? "block" : "hidden",
         )}
-        aria-hidden={!open}
       >
-        <nav className="flex flex-col p-4" aria-label="Menu mobile">
+        <nav className="flex flex-col gap-1 px-5 py-4" aria-label="Menu mobile">
           {navLinks.map((link) => (
             <a
               key={link.href}
               href={link.href}
-              className="rounded-xl px-4 py-3 text-base font-medium text-text hover:bg-olive/10"
+              className="rounded-xl px-3 py-3 text-base font-semibold text-text hover:bg-olive/10"
               onClick={() => setOpen(false)}
             >
               {link.label}
             </a>
           ))}
+          <WhatsAppButton
+            href={siteConfig.urls.whatsapp}
+            className="mt-2 w-full justify-center rounded-full bg-olive-deep px-4 py-3 font-semibold text-cream"
+            onClick={() => setOpen(false)}
+          >
+            Fale conosco
+          </WhatsAppButton>
         </nav>
       </div>
     </header>

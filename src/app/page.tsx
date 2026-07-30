@@ -1,12 +1,13 @@
 import { siteContent } from "@/data/site-content";
 import { HeroSection } from "@/components/sections/HeroSection";
 import { QuemSomosSection } from "@/components/sections/QuemSomosSection";
-// Seções temporariamente ocultas enquanto as fotos são montadas — não apagar
-// import { VivenciaSection } from "@/components/sections/VivenciaSection";
+import { VivenciaSection } from "@/components/sections/VivenciaSection";
 import { TextBlockSection } from "@/components/sections/TextBlockSection";
 // import { AmbienteSection } from "@/components/sections/AmbienteSection";
 import { InformacoesSection } from "@/components/sections/InformacoesSection";
 import { CtaFinalSection } from "@/components/sections/CtaFinalSection";
+import { SteppingStoneDivider } from "@/components/shared/SteppingStoneDivider";
+import { SectionWave } from "@/components/shared/SectionWave";
 
 export default function HomePage() {
   const { adaptacao, alimentacaoRotina } = siteContent;
@@ -14,8 +15,13 @@ export default function HomePage() {
   return (
     <>
       <HeroSection />
+      <SteppingStoneDivider />
+      <SectionWave from="linen" to="cream" />
       <QuemSomosSection />
-      {/* <VivenciaSection /> — reativar quando as fotos da vivência estiverem prontas */}
+      <SteppingStoneDivider />
+      <SectionWave from="cream" to="linen" />
+      <VivenciaSection />
+      <SteppingStoneDivider />
       <TextBlockSection
         id="adaptacao"
         title={adaptacao.title}
@@ -23,6 +29,8 @@ export default function HomePage() {
         eyebrow="Segurança emocional"
         variant="accent"
       />
+      <SteppingStoneDivider />
+      <SectionWave from="linen" to="cream" />
       <TextBlockSection
         id="alimentacao-rotina"
         title={alimentacaoRotina.title}
@@ -30,7 +38,9 @@ export default function HomePage() {
         eyebrow="Transparência e cuidado no dia a dia"
       />
       {/* <AmbienteSection /> — reativar quando as fotos do ambiente estiverem prontas */}
+      <SteppingStoneDivider />
       <InformacoesSection />
+      <SectionWave from="cream" to="olive-deep" />
       <CtaFinalSection />
     </>
   );

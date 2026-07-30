@@ -1,6 +1,6 @@
 import { Container } from "@/components/ui/Container";
-import { SectionHeading } from "@/components/ui/SectionHeading";
 import { FadeIn } from "@/components/shared/FadeIn";
+import { cn } from "@/lib/cn";
 
 type TextBlockSectionProps = {
   id: string;
@@ -20,17 +20,26 @@ export function TextBlockSection({
   return (
     <section
       id={id}
-      className={
-        variant === "accent"
-          ? "bg-olive/5 py-16 md:py-20"
-          : "py-16 md:py-20"
-      }
+      className={cn(
+        "py-16 md:py-20",
+        variant === "accent" ? "bg-linen" : "bg-cream",
+      )}
       aria-labelledby={`${id}-title`}
     >
       <Container className="max-w-3xl">
-        <SectionHeading title={title} eyebrow={eyebrow} />
         <FadeIn>
-          <p className="text-lg leading-relaxed text-text-muted md:text-xl">
+          {eyebrow && (
+            <p className="mb-2 text-sm font-bold uppercase tracking-wider text-olive">
+              {eyebrow}
+            </p>
+          )}
+          <h2
+            id={`${id}-title`}
+            className="font-display text-3xl font-bold text-olive-deep sm:text-4xl"
+          >
+            {title}
+          </h2>
+          <p className="mt-5 text-lg leading-relaxed text-text-muted">
             {body}
           </p>
         </FadeIn>

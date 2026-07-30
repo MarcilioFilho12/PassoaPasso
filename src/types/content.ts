@@ -18,6 +18,7 @@ export type SiteContent = {
     cta: { label: string; href: string };
     secondaryCta: { label: string; href: string };
     image: ImageAsset;
+    secondaryImage: ImageAsset;
   };
   quemSomos: {
     title: string;

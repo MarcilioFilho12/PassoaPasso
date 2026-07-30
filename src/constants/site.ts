@@ -32,7 +32,7 @@ export const siteConfig = {
   brand: {
     logoHeader: "/brand/logo-completo.jpeg",
     logoSquare: "/brand/logo-quadrada.png",
-    logoCircle: "/brand/logo-original.png",
+    logoCircle: "/brand/logo-circle.png",
     logoCompact: "/brand/logo-circular-texto.png",
   },
 } as const;

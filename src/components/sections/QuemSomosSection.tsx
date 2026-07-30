@@ -1,54 +1,68 @@
+import Image from "next/image";
+import { Leaf } from "lucide-react";
 import { siteContent } from "@/data/site-content";
 import { Container } from "@/components/ui/Container";
-import { SectionHeading } from "@/components/ui/SectionHeading";
 import { FadeIn } from "@/components/shared/FadeIn";
-import { PlaceholderImage } from "@/components/shared/PlaceholderImage";
-import { SteppingStoneDivider } from "@/components/shared/SteppingStoneDivider";
 
 export function QuemSomosSection() {
   const { quemSomos } = siteContent;
+  const [intro, ...rest] = quemSomos.paragraphs;
 
   return (
     <section
       id="quem-somos"
-      className="py-16 md:py-24"
+      className="bg-cream py-16 md:py-24"
       aria-labelledby="quem-somos-title"
     >
       <Container>
-        <SectionHeading
-          title={quemSomos.title}
-          eyebrow="Confiança e vínculo"
-        />
-
-        <div className="grid gap-10 lg:grid-cols-5 lg:gap-16">
-          <FadeIn className="lg:col-span-3">
-            <div className="space-y-6 text-base leading-relaxed text-text-muted md:text-lg">
-              {quemSomos.paragraphs.map((paragraph, index) => (
-                <p
-                  key={index}
-                  className={
-                    index === 1
-                      ? "rounded-2xl border-l-4 border-cinnamon bg-white/50 p-5 font-medium text-text"
-                      : undefined
-                  }
-                >
-                  {paragraph}
-                </p>
-              ))}
-            </div>
-          </FadeIn>
-
+        <div className="grid items-center gap-10 md:grid-cols-2 md:gap-14">
           {quemSomos.image && (
-            <FadeIn delay={0.1} className="lg:col-span-2">
-              <PlaceholderImage
-                image={quemSomos.image}
-                className="sticky top-28"
-              />
+            <FadeIn direction="left">
+              <div className="relative aspect-[4/3] w-full overflow-hidden rounded-[2.5rem] shadow-lg">
+                <Image
+                  src={quemSomos.image.src}
+                  alt={quemSomos.image.alt}
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                />
+              </div>
             </FadeIn>
           )}
+
+          <FadeIn delay={0.08} direction="right">
+            <p className="text-sm font-bold uppercase tracking-wider text-olive">
+              Confiança e vínculo
+            </p>
+            <h2
+              id="quem-somos-title"
+              className="mt-2 font-display text-3xl font-bold text-olive-deep sm:text-4xl"
+            >
+              {quemSomos.title}
+            </h2>
+            <p className="mt-4 text-base leading-relaxed text-text-muted md:text-lg">
+              {intro}
+            </p>
+
+            <ul className="mt-6 space-y-3">
+              {rest.map((paragraph) => (
+                <li
+                  key={paragraph.slice(0, 40)}
+                  className="flex items-start gap-3 text-text"
+                >
+                  <Leaf
+                    className="mt-1 h-4 w-4 shrink-0 text-olive"
+                    aria-hidden
+                  />
+                  <span className="text-sm leading-relaxed md:text-base">
+                    {paragraph}
+                  </span>
+                </li>
+              ))}
+            </ul>
+          </FadeIn>
         </div>
       </Container>
-      <SteppingStoneDivider />
     </section>
   );
 }

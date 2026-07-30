@@ -2,15 +2,29 @@
 
 import { motion, useReducedMotion } from "framer-motion";
 import { cn } from "@/lib/cn";
+import { softEase } from "@/lib/motion";
 
 type FadeInProps = {
   children: React.ReactNode;
   className?: string;
   delay?: number;
+  direction?: "up" | "left" | "right";
 };
 
-export function FadeIn({ children, className, delay = 0 }: FadeInProps) {
+const offsets = {
+  up: { x: 0, y: 24 },
+  left: { x: -28, y: 0 },
+  right: { x: 28, y: 0 },
+};
+
+export function FadeIn({
+  children,
+  className,
+  delay = 0,
+  direction = "up",
+}: FadeInProps) {
   const reduced = useReducedMotion();
+  const offset = offsets[direction];
 
   if (reduced) {
     return <div className={className}>{children}</div>;
@@ -19,10 +33,10 @@ export function FadeIn({ children, className, delay = 0 }: FadeInProps) {
   return (
     <motion.div
       className={cn(className)}
-      initial={{ opacity: 0, y: 24 }}
-      whileInView={{ opacity: 1, y: 0 }}
+      initial={{ opacity: 0, ...offset }}
+      whileInView={{ opacity: 1, x: 0, y: 0 }}
       viewport={{ once: true, margin: "-80px" }}
-      transition={{ duration: 0.6, delay, ease: [0.32, 0.72, 0, 1] }}
+      transition={{ duration: 0.6, delay, ease: softEase }}
     >
       {children}
     </motion.div>

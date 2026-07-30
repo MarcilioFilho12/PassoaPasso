@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Nunito, Fredoka } from "next/font/google";
+import { Nunito, Baloo_2 } from "next/font/google";
 import { siteContent } from "@/data/site-content";
 import { siteConfig } from "@/constants/site";
 import { Header } from "@/components/layout/Header";
@@ -12,10 +12,11 @@ const nunito = Nunito({
   display: "swap",
 });
 
-const fredoka = Fredoka({
-  variable: "--font-fredoka",
+const baloo = Baloo_2({
+  variable: "--font-baloo",
   subsets: ["latin"],
   display: "swap",
+  weight: ["500", "600", "700", "800"],
 });
 
 export const metadata: Metadata = {
@@ -40,7 +41,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="pt-BR" className={`${nunito.variable} ${fredoka.variable}`}>
+    <html lang="pt-BR" className={`${nunito.variable} ${baloo.variable}`}>
       <body className="min-h-screen antialiased">
         <Header />
         <main>{children}</main>

@@ -1,139 +1,162 @@
 "use client";
 
 import Link from "next/link";
-import { motion, useReducedMotion } from "framer-motion";
+import { motion, useReducedMotion, type Variants } from "framer-motion";
 import { siteContent } from "@/data/site-content";
 import { siteConfig } from "@/constants/site";
-import { Button } from "@/components/ui/Button";
-import { cn } from "@/lib/cn";
+import { Container } from "@/components/ui/Container";
+import { ArtCollage } from "@/components/shared/ArtCollage";
+import { FloatingDecor } from "@/components/shared/FloatingDecor";
+import { WhatsAppButton } from "@/components/shared/WhatsAppButton";
 
 const trustHighlights = [
-  "3 a 6 anos",
+  "A partir dos 3 anos",
   "Alimentação inclusa",
   "Adaptação gradual",
 ];
 
-function ArrowIcon() {
-  return (
-    <svg
-      aria-hidden
-      width="20"
-      height="20"
-      viewBox="0 0 20 20"
-      fill="none"
-      className="transition-transform group-hover:translate-x-0.5"
-    >
-      <path
-        d="M7 10H13M13 10L10 7M13 10L10 13"
-        stroke="currentColor"
-        strokeWidth="2"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    </svg>
-  );
-}
+const container: Variants = {
+  hidden: {},
+  visible: { transition: { staggerChildren: 0.1, delayChildren: 0.05 } },
+};
+
+const item: Variants = {
+  hidden: { opacity: 0, y: 12, filter: "blur(6px)" },
+  visible: {
+    opacity: 1,
+    y: 0,
+    filter: "blur(0px)",
+    transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] },
+  },
+};
+
+const mediaItem: Variants = {
+  hidden: { opacity: 0, y: 24, filter: "blur(8px)" },
+  visible: {
+    opacity: 1,
+    y: 0,
+    filter: "blur(0px)",
+    transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] },
+  },
+};
 
 export function HeroSection() {
   const { hero } = siteContent;
   const reducedMotion = useReducedMotion();
-
-  const fadeUp = reducedMotion
-    ? {}
-    : {
-        initial: { opacity: 0, y: 28 },
-        animate: { opacity: 1, y: 0 },
-      };
+  const animate = !reducedMotion;
 
   return (
     <section
       id="inicio"
-      className="relative flex min-h-[100dvh] flex-col overflow-hidden bg-gradient-to-b from-linen via-[#f5f0e4] to-linen"
+      className="relative isolate w-full overflow-hidden bg-linen"
       aria-labelledby="hero-title"
     >
       <div
         aria-hidden
-        className="pointer-events-none absolute -right-24 top-20 h-80 w-80 rounded-full bg-sun/20 blur-3xl"
-      />
-      <div
-        aria-hidden
-        className="pointer-events-none absolute -left-24 top-1/3 h-96 w-96 rounded-full bg-olive/15 blur-3xl"
-      />
-      <div
-        aria-hidden
-        className="pointer-events-none absolute bottom-32 left-1/2 h-64 w-64 -translate-x-1/2 rounded-full bg-sky/10 blur-3xl"
-      />
+        className="pointer-events-none absolute inset-0 z-0 opacity-50 blur-2xl"
+        style={{
+          maskImage:
+            "radial-gradient(ellipse 75% 100% at 50% 0%, black 45%, transparent 75%)",
+        }}
+      >
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src={hero.image.src}
+          alt=""
+          className="h-full w-full object-cover object-top"
+        />
+      </div>
 
-      <div className="relative z-10 flex flex-1 flex-col items-center justify-center px-4 pb-16 pt-10 md:px-8 md:pb-20 md:pt-16">
+      <FloatingDecor variant="hero" />
+
+      <Container className="relative z-10">
         <motion.div
-          {...fadeUp}
-          transition={{ duration: 0.7, ease: [0.32, 0.72, 0, 1] }}
-          className="flex max-w-4xl flex-col items-center text-center"
+          className="grid grid-cols-1 items-center gap-12 py-20 sm:py-28 lg:grid-cols-2 lg:gap-16"
+          variants={animate ? container : undefined}
+          initial={animate ? "hidden" : false}
+          animate={animate ? "visible" : undefined}
         >
-          <p className="mb-4 text-xs font-semibold uppercase tracking-[0.2em] text-olive">
-            {hero.eyebrow}
-          </p>
-
-          <h1
-            id="hero-title"
-            className="font-display text-[clamp(2rem,5.5vw,4.25rem)] font-semibold leading-[1.12] tracking-tight text-cinnamon-dark"
-          >
-            {hero.title}
-          </h1>
-
-          <p className="mt-6 max-w-2xl text-base leading-relaxed text-text-muted md:text-lg md:leading-8">
-            {hero.subtitle}
-          </p>
-
           <motion.div
-            {...(reducedMotion
-              ? {}
-              : {
-                  initial: { opacity: 0, scale: 0.97 },
-                  animate: { opacity: 1, scale: 1 },
-                })}
-            transition={{ duration: 0.55, delay: 0.2 }}
-            className="mt-8 flex flex-col items-center gap-3 sm:flex-row sm:gap-4"
+            variants={animate ? item : undefined}
+            className="flex flex-col items-start gap-5"
           >
-            <Link
-              href={hero.cta.href}
-              className={cn(
-                "group inline-flex items-center gap-2 rounded-full bg-cinnamon px-7 py-3.5 text-base font-semibold text-linen shadow-md shadow-cinnamon/25 transition-all hover:bg-cinnamon-dark active:scale-[0.98]",
-              )}
+            <motion.span
+              className="inline-flex items-center rounded-full bg-olive/25 px-4 py-1.5 text-sm font-bold text-olive-deep"
+              animate={animate ? { scale: [1, 1.02, 1] } : undefined}
+              transition={{
+                duration: 2,
+                repeat: Infinity,
+                repeatDelay: 5,
+                ease: "easeInOut",
+              }}
             >
-              {hero.cta.label}
-              <ArrowIcon />
-            </Link>
-            <Button href={hero.secondaryCta.href} variant="outline">
-              {hero.secondaryCta.label}
-            </Button>
+              {hero.eyebrow}
+            </motion.span>
+
+            <h1
+              id="hero-title"
+              className="font-display text-3xl font-bold leading-[1.12] text-balance text-olive-deep sm:text-4xl md:text-5xl"
+            >
+              {hero.title}
+            </h1>
+
+            <p className="max-w-md text-sm leading-relaxed text-text-muted sm:text-base md:text-lg">
+              {hero.subtitle}
+            </p>
+
+            <div className="mt-2 flex flex-wrap gap-3">
+              <WhatsAppButton
+                href={hero.cta.href}
+                className="rounded-full bg-cinnamon px-6 py-3 font-bold text-cream shadow-md transition-colors hover:bg-cinnamon-dark"
+              >
+                {hero.cta.label}
+              </WhatsAppButton>
+              <Link
+                href={hero.secondaryCta.href}
+                className="inline-flex items-center rounded-full border-2 border-olive-deep/30 px-6 py-3 font-bold text-olive-deep transition hover:bg-olive/15"
+              >
+                {hero.secondaryCta.label}
+              </Link>
+            </div>
+
+            <ul
+              className="flex flex-wrap gap-2"
+              aria-label="Destaques do espaço"
+            >
+              {trustHighlights.map((highlight) => (
+                <li
+                  key={highlight}
+                  className="rounded-full border border-border bg-cream/80 px-3 py-1.5 text-xs font-semibold text-text-muted md:text-sm"
+                >
+                  {highlight}
+                </li>
+              ))}
+            </ul>
           </motion.div>
 
-          <motion.p
-            {...fadeUp}
-            transition={{ duration: 0.6, delay: 0.35 }}
-            className="mt-8 max-w-xl font-display text-base italic text-olive md:text-lg"
+          <motion.div
+            variants={animate ? mediaItem : undefined}
+            className="relative w-full"
           >
-            &ldquo;{siteConfig.anchorPhrase}&rdquo;
-          </motion.p>
-
-          <motion.ul
-            {...fadeUp}
-            transition={{ duration: 0.6, delay: 0.45 }}
-            className="mt-6 flex flex-wrap items-center justify-center gap-2"
-            aria-label="Destaques do espaço"
-          >
-            {trustHighlights.map((item) => (
-              <li
-                key={item}
-                className="rounded-full border border-olive/20 bg-linen/80 px-3 py-1.5 text-xs font-medium text-text-muted backdrop-blur-sm md:text-sm"
-              >
-                {item}
-              </li>
-            ))}
-          </motion.ul>
+            <ArtCollage
+              primaryImage={hero.image.src}
+              secondaryImage={hero.secondaryImage.src}
+              primaryAlt={hero.image.alt}
+              secondaryAlt={hero.secondaryImage.alt}
+            />
+            <motion.div
+              className="absolute bottom-2 left-2 z-20 rounded-2xl bg-card px-5 py-3 shadow-lg sm:left-6"
+              initial={animate ? { opacity: 0, y: 12 } : false}
+              animate={animate ? { opacity: 1, y: 0 } : undefined}
+              transition={{ delay: 0.8, duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+            >
+              <p className="font-display text-base font-semibold text-cinnamon">
+                &ldquo;{siteConfig.anchorPhrase}&rdquo;
+              </p>
+            </motion.div>
+          </motion.div>
         </motion.div>
-      </div>
+      </Container>
     </section>
   );
 }

@@ -1,79 +1,48 @@
+import Image from "next/image";
 import { siteContent } from "@/data/site-content";
 import { siteConfig } from "@/constants/site";
-import { Logo } from "@/components/shared/Logo";
 import { Container } from "@/components/ui/Container";
 
 export function Footer() {
   const { footer } = siteContent;
 
   return (
-    <footer className="border-t border-olive/15 bg-cinnamon-dark/5 py-12 md:py-16">
-      <Container className="flex flex-col items-center gap-8 text-center md:flex-row md:items-start md:justify-between md:text-left">
-        <div className="flex flex-col items-center gap-4 md:items-start">
-          <Logo variant="footer" />
-          <p className="max-w-xs font-display text-lg italic text-olive">
-            {footer.tagline}
-          </p>
+    <footer className="bg-linen py-10">
+      <Container className="flex flex-col items-center gap-4 text-center text-sm text-text-muted">
+        <Image
+          src={siteConfig.brand.logoCircle}
+          alt="Passo a Passo Recreação Infantil"
+          width={128}
+          height={128}
+          className="h-24 w-24 rounded-full object-contain sm:h-28 sm:w-28"
+          quality={100}
+        />
+        <p className="max-w-sm font-display text-base italic text-olive-deep">
+          {footer.tagline}
+        </p>
+        <address className="not-italic">{footer.address}</address>
+       
+        <div className="flex gap-4">
+          <a
+            href={footer.social.instagram}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="font-medium text-olive-deep underline-offset-4 hover:underline"
+          >
+            Instagram
+          </a>
+          <a
+            href={footer.social.whatsapp}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="font-medium text-olive-deep underline-offset-4 hover:underline"
+          >
+            WhatsApp
+          </a>
         </div>
-
-        <div className="flex flex-col gap-3 text-sm text-text-muted">
-          <p className="font-semibold text-cinnamon-dark">Contato</p>
-          <address className="not-italic">{footer.address}</address>
-          <p>
-            <a
-              href={siteConfig.contact.phoneHref}
-              className="font-medium text-olive underline-offset-4 hover:underline"
-            >
-              {siteConfig.contact.phone}
-            </a>
-          </p>
-          <ul className="flex flex-col gap-2 md:items-start">
-            <li>
-              <a
-                href={footer.social.instagram}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="font-medium text-olive underline-offset-4 hover:underline"
-                aria-label="Instagram da Passo a Passo"
-              >
-                Instagram
-              </a>
-            </li>
-            <li>
-              <a
-                href={footer.social.whatsapp}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="font-medium text-olive underline-offset-4 hover:underline"
-                aria-label="WhatsApp da Passo a Passo"
-              >
-                WhatsApp
-              </a>
-            </li>
-            {footer.mapUrl && (
-              <li>
-                <a
-                  href={footer.mapUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="font-medium text-olive underline-offset-4 hover:underline"
-                >
-                  Ver localização
-                </a>
-              </li>
-            )}
-          </ul>
-        </div>
-
-        <div className="text-xs text-text-muted">
-          <p>
-            © {new Date().getFullYear()} {siteConfig.name} —{" "}
-            {siteConfig.tagline}
-          </p>
-          <p className="mt-1 opacity-80">
-            acolhimento · infância · vínculo · natureza
-          </p>
-        </div>
+        <p className="pt-2">
+          © {new Date().getFullYear()} {siteConfig.name} — {siteConfig.tagline}
+        </p>
       </Container>
     </footer>
   );
