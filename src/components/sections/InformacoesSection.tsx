@@ -18,7 +18,7 @@ const iconByLabel: Record<string, LucideIcon> = {
   Horário: Clock,
   Período: Sun,
   Endereço: MapPin,
-  Incluso: Apple,
+  Alimentação: Apple,
   Adaptação: HeartHandshake,
   Contato: Phone,
 };
@@ -80,9 +80,6 @@ export function InformacoesSection() {
             <MapPin className="h-7 w-7 text-cinnamon" aria-hidden />
             <p className="font-display text-2xl font-semibold text-olive-deep">
               {informacoes.items.find((i) => i.label === "Endereço")?.value}
-            </p>
-            <p className="text-text-muted">
-              Vagas limitadas para manter o olhar individual.
             </p>
           </div>
         </FadeIn>

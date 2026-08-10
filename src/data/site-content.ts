@@ -128,12 +128,15 @@ export const siteContent: SiteContent = {
     items: [
       { label: "Faixa etária", value: "A partir dos 3 anos" },
       { label: "Horário", value: "Segunda a Sexta - 13h às 18h" },
-      { label: "Período", value: "Vespertino" },
+      { label: "Período", value: "Vespertino, vagas limitadas para manter o olhar individual." },
       {
         label: "Endereço",
         value: "R. Arlindo Alcebíades de Andrade",
       },
-      { label: "Incluso", value: "Alimentação inclusa" },
+      {
+        label: "Alimentação",
+        value: "Incluso, cardápio disponibilizado antecipadamente.",
+      },
       { label: "Adaptação", value: "Adaptação gradual" },
       { label: "Contato", value: siteConfig.contact.phone },
     ],
