@@ -10,7 +10,7 @@ import { FloatingDecor } from "@/components/shared/FloatingDecor";
 import { WhatsAppButton } from "@/components/shared/WhatsAppButton";
 
 const trustHighlights = [
-  "A partir dos 3 anos",
+  "Até 12 anos",
   "Alimentação inclusa",
   "Adaptação gradual",
 ];

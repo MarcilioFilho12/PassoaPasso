@@ -10,7 +10,7 @@ export const siteContent: SiteContent = {
   meta: {
     title: "Passo a Passo | Recreação Infantil",
     description:
-      "Espaço acolhedor de recreação infantil para crianças a partir dos 3 anos. Acolhimento, vínculo, natureza, leveza e segurança emocional. Aqui a infância é tratada com carinho e afeto.",
+      "Espaço acolhedor de recreação infantil para crianças até 12 anos. Acolhimento, vínculo, natureza, leveza e segurança emocional. Aqui a infância é tratada com carinho e afeto.",
   },
   hero: {
     eyebrow: "Recreação infantil com acolhimento e afeto",
@@ -55,7 +55,13 @@ export const siteContent: SiteContent = {
           alt: "Criança brincando livre em escada de corda na natureza — Passo a Passo Recreação Infantil",
         },
       },
-      { label: "Imaginação", image: placeholder("imaginação") },
+      {
+        label: "Imaginação",
+        image: {
+          src: "/imaginacao.jpg",
+          alt: "Crianças brincando com imaginação no pneu azul — Passo a Passo Recreação Infantil",
+        },
+      },
       {
         label: "Sem telas",
         image: {
@@ -66,8 +72,8 @@ export const siteContent: SiteContent = {
       {
         label: "Atividades sensoriais",
         image: {
-          src: "/IMG_4860-2.jpg",
-          alt: "Criança regando plantas em atividade sensorial com natureza — Passo a Passo Recreação Infantil",
+          src: "/atividades-sensoriais.jpg",
+          alt: "Crianças em atividade sensorial com pintura ao ar livre — Passo a Passo Recreação Infantil",
         },
       },
       {
@@ -94,13 +100,16 @@ export const siteContent: SiteContent = {
       {
         label: "Acolhimento emocional",
         image: {
-          src: "/atividades-inicio-do-ano-educacao-infantil.webp",
-          alt: "Criança em ambiente acolhedor de educação infantil — Passo a Passo Recreação Infantil",
+          src: "/acolhimento-emocional.jpg",
+          alt: "Criança em ambiente acolhedor e brincadeira ao ar livre — Passo a Passo Recreação Infantil",
         },
       },
       {
         label: "Mediação afetiva nos conflitos",
-        image: placeholder("mediação afetiva nos conflitos"),
+        image: {
+          src: "/mediacao-afetiva.jpg",
+          alt: "Crianças em mediação afetiva e convivência respeitosa — Passo a Passo Recreação Infantil",
+        },
       },
     ],
   },
@@ -126,7 +135,7 @@ export const siteContent: SiteContent = {
   informacoes: {
     title: "Informações Práticas",
     items: [
-      { label: "Faixa etária", value: "A partir dos 3 anos" },
+      { label: "Faixa etária", value: "Até 12 anos" },
       { label: "Horário", value: "Segunda a Sexta - 13h às 18h" },
       { label: "Período", value: "Vespertino, vagas limitadas para manter o olhar individual." },
       {
