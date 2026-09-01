@@ -4,7 +4,8 @@ import { siteContent } from "@/data/site-content";
 import { siteConfig } from "@/constants/site";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
-import { MetaPixel } from "@/components/analytics/MetaPixel";
+import { MetaPixelHead, MetaPixelNoscript } from "@/components/analytics/MetaPixelHead";
+import { MetaPixelPageView } from "@/components/analytics/MetaPixelPageView";
 import "./globals.css";
 
 const nunito = Nunito({
@@ -43,8 +44,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="pt-BR" className={`${nunito.variable} ${baloo.variable}`}>
+      <head>
+        <MetaPixelHead />
+      </head>
       <body className="min-h-screen antialiased">
-        <MetaPixel />
+        <MetaPixelNoscript />
+        <MetaPixelPageView />
         <Header />
         <main>{children}</main>
         <Footer />
