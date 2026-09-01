@@ -107,6 +107,7 @@ export function HeroSection() {
             <div className="mt-2 flex flex-wrap gap-3">
               <WhatsAppButton
                 href={hero.cta.href}
+                leadSource="WhatsApp Hero"
                 className="rounded-full bg-cinnamon px-6 py-3 font-bold text-cream shadow-md transition-colors hover:bg-cinnamon-dark"
               >
                 {hero.cta.label}

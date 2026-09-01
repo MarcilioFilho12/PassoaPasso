@@ -46,6 +46,7 @@ export function Header() {
           ))}
           <WhatsAppButton
             href={siteConfig.urls.whatsapp}
+            leadSource="WhatsApp Header"
             className="rounded-full bg-olive-deep px-4 py-2 text-cream shadow-sm transition-colors hover:opacity-90"
           >
             Fale conosco
@@ -84,6 +85,7 @@ export function Header() {
           ))}
           <WhatsAppButton
             href={siteConfig.urls.whatsapp}
+            leadSource="WhatsApp Header Mobile"
             className="mt-2 w-full justify-center rounded-full bg-olive-deep px-4 py-3 font-semibold text-cream"
             onClick={() => setOpen(false)}
           >

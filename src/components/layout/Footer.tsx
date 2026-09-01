@@ -2,6 +2,7 @@ import Image from "next/image";
 import { siteContent } from "@/data/site-content";
 import { siteConfig } from "@/constants/site";
 import { Container } from "@/components/ui/Container";
+import { LeadLink } from "@/components/analytics/LeadLink";
 
 export function Footer() {
   const { footer } = siteContent;
@@ -31,14 +32,13 @@ export function Footer() {
           >
             Instagram
           </a>
-          <a
+          <LeadLink
             href={footer.social.whatsapp}
-            target="_blank"
-            rel="noopener noreferrer"
             className="font-medium text-olive-deep underline-offset-4 hover:underline"
+            leadSource="WhatsApp Footer"
           >
             WhatsApp
-          </a>
+          </LeadLink>
         </div>
         <p className="pt-2">
           © {new Date().getFullYear()} {siteConfig.name} — {siteConfig.tagline}

@@ -47,6 +47,7 @@ export function CtaFinalSection() {
           <div className="mt-7 flex flex-wrap justify-center gap-3">
             <WhatsAppButton
               href={siteConfig.urls.whatsapp}
+              leadSource="WhatsApp CTA Final"
               className="rounded-full bg-sun px-6 py-3 font-bold text-text shadow-md transition-opacity hover:opacity-90"
             >
               {siteConfig.contact.phone}

@@ -3,6 +3,7 @@
 import { motion, useReducedMotion } from "framer-motion";
 import { Phone } from "lucide-react";
 import { cn } from "@/lib/cn";
+import { trackMetaLead } from "@/lib/meta-pixel";
 
 type WhatsAppButtonProps = {
   href: string;
@@ -10,6 +11,8 @@ type WhatsAppButtonProps = {
   className?: string;
   iconClassName?: string;
   onClick?: () => void;
+  trackLead?: boolean;
+  leadSource?: string;
 };
 
 export function WhatsAppButton({
@@ -18,8 +21,15 @@ export function WhatsAppButton({
   className,
   iconClassName,
   onClick,
+  trackLead = true,
+  leadSource = "WhatsApp",
 }: WhatsAppButtonProps) {
   const reduced = useReducedMotion();
+
+  function handleClick() {
+    if (trackLead) trackMetaLead(leadSource);
+    onClick?.();
+  }
 
   if (reduced) {
     return (
@@ -27,7 +37,7 @@ export function WhatsAppButton({
         href={href}
         target="_blank"
         rel="noopener noreferrer"
-        onClick={onClick}
+        onClick={handleClick}
         className={cn("inline-flex items-center gap-2", className)}
       >
         <Phone className={cn("h-4 w-4", iconClassName)} aria-hidden />
@@ -41,7 +51,7 @@ export function WhatsAppButton({
       href={href}
       target="_blank"
       rel="noopener noreferrer"
-      onClick={onClick}
+      onClick={handleClick}
       className={cn("inline-flex items-center gap-2", className)}
       whileHover={{ scale: 1.03, y: -1 }}
       whileTap={{ scale: 0.98 }}
