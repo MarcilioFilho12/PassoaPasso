@@ -46,6 +46,10 @@ export default function RootLayout({
     <html lang="pt-BR" className={`${nunito.variable} ${baloo.variable}`}>
       <head>
         <MetaPixelHead />
+        <meta
+          name="google-site-verification"
+          content="google8c8d16f37ec78420"
+        />
       </head>
       <body className="min-h-screen antialiased">
         <MetaPixelNoscript />
