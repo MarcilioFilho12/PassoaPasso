@@ -48,7 +48,7 @@ export default function RootLayout({
         <MetaPixelHead />
         <meta
           name="google-site-verification"
-          content="google8c8d16f37ec78420"
+          content="kLMg36unUGCRiCOoNCv8ZTGxivxRnn129Ax3NSqBXPI"
         />
       </head>
       <body className="min-h-screen antialiased">
