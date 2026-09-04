@@ -1,6 +1,6 @@
 "use client";
 
-import { trackMetaLead } from "@/lib/meta-pixel";
+import { trackLead } from "@/lib/track-lead";
 
 type LeadLinkProps = {
   href: string;
@@ -21,7 +21,7 @@ export function LeadLink({
       target="_blank"
       rel="noopener noreferrer"
       className={className}
-      onClick={() => trackMetaLead(leadSource)}
+      onClick={() => trackLead(leadSource)}
     >
       {children}
     </a>

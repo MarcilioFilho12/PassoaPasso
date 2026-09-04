@@ -6,6 +6,7 @@ import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { MetaPixelHead, MetaPixelNoscript } from "@/components/analytics/MetaPixelHead";
 import { MetaPixelPageView } from "@/components/analytics/MetaPixelPageView";
+import { GoogleAdsTag } from "@/components/analytics/GoogleAdsTag";
 import "./globals.css";
 
 const nunito = Nunito({
@@ -46,6 +47,7 @@ export default function RootLayout({
     <html lang="pt-BR" className={`${nunito.variable} ${baloo.variable}`}>
       <head>
         <MetaPixelHead />
+        <GoogleAdsTag />
         <meta
           name="google-site-verification"
           content="kLMg36unUGCRiCOoNCv8ZTGxivxRnn129Ax3NSqBXPI"

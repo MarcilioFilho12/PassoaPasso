@@ -3,7 +3,7 @@
 import { motion, useReducedMotion } from "framer-motion";
 import { Phone } from "lucide-react";
 import { cn } from "@/lib/cn";
-import { trackMetaLead } from "@/lib/meta-pixel";
+import { trackLead } from "@/lib/track-lead";
 
 type WhatsAppButtonProps = {
   href: string;
@@ -21,13 +21,13 @@ export function WhatsAppButton({
   className,
   iconClassName,
   onClick,
-  trackLead = true,
+  trackLead: shouldTrackLead = true,
   leadSource = "WhatsApp",
 }: WhatsAppButtonProps) {
   const reduced = useReducedMotion();
 
   function handleClick() {
-    if (trackLead) trackMetaLead(leadSource);
+    if (shouldTrackLead) trackLead(leadSource);
     onClick?.();
   }
 
