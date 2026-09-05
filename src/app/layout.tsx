@@ -27,9 +27,18 @@ export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: siteContent.meta.title,
   description: siteContent.meta.description,
+  applicationName: siteConfig.name,
   keywords: [...siteConfig.keywords],
   alternates: { canonical: "/" },
   robots: { index: true, follow: true },
+  icons: {
+    icon: [
+      { url: "/favicon.ico", sizes: "48x48" },
+      { url: "/favicon-48x48.png", type: "image/png", sizes: "48x48" },
+      { url: "/favicon-96x96.png", type: "image/png", sizes: "96x96" },
+    ],
+    apple: { url: "/apple-icon.png", sizes: "180x180" },
+  },
   verification: {
     google: "kLMg36unUGCRiCOoNCv8ZTGxivxRnn129Ax3NSqBXPI",
   },
