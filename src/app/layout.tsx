@@ -8,6 +8,7 @@ import { MetaPixelHead, MetaPixelNoscript } from "@/components/analytics/MetaPix
 import { MetaPixelPageView } from "@/components/analytics/MetaPixelPageView";
 import { GoogleAdsTag } from "@/components/analytics/GoogleAdsTag";
 import { LocalBusinessJsonLd } from "@/components/analytics/LocalBusinessJsonLd";
+import { PromoBanner } from "@/components/shared/PromoBanner";
 import "./globals.css";
 
 const nunito = Nunito({
@@ -73,6 +74,7 @@ export default function RootLayout({
         <Header />
         <main>{children}</main>
         <Footer />
+        <PromoBanner />
       </body>
     </html>
   );
