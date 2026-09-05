@@ -5,6 +5,7 @@ import { VivenciaSection } from "@/components/sections/VivenciaSection";
 import { TextBlockSection } from "@/components/sections/TextBlockSection";
 // import { AmbienteSection } from "@/components/sections/AmbienteSection";
 import { InformacoesSection } from "@/components/sections/InformacoesSection";
+import { MapSection } from "@/components/sections/MapSection";
 import { CtaFinalSection } from "@/components/sections/CtaFinalSection";
 import { SteppingStoneDivider } from "@/components/shared/SteppingStoneDivider";
 import { SectionWave } from "@/components/shared/SectionWave";
@@ -40,7 +41,10 @@ export default function HomePage() {
       {/* <AmbienteSection /> — reativar quando as fotos do ambiente estiverem prontas */}
       <SteppingStoneDivider />
       <InformacoesSection />
-      <SectionWave from="cream" to="olive-deep" />
+      <SteppingStoneDivider />
+      <SectionWave from="cream" to="linen" />
+      <MapSection />
+      <SectionWave from="linen" to="olive-deep" />
       <CtaFinalSection />
     </>
   );

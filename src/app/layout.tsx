@@ -1,12 +1,13 @@
 import type { Metadata } from "next";
 import { Nunito, Baloo_2 } from "next/font/google";
 import { siteContent } from "@/data/site-content";
-import { siteConfig } from "@/constants/site";
+import { siteConfig, siteUrl } from "@/constants/site";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { MetaPixelHead, MetaPixelNoscript } from "@/components/analytics/MetaPixelHead";
 import { MetaPixelPageView } from "@/components/analytics/MetaPixelPageView";
 import { GoogleAdsTag } from "@/components/analytics/GoogleAdsTag";
+import { LocalBusinessJsonLd } from "@/components/analytics/LocalBusinessJsonLd";
 import "./globals.css";
 
 const nunito = Nunito({
@@ -23,18 +24,25 @@ const baloo = Baloo_2({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL(
-    process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000",
-  ),
+  metadataBase: new URL(siteUrl),
   title: siteContent.meta.title,
   description: siteContent.meta.description,
   keywords: [...siteConfig.keywords],
+  alternates: { canonical: "/" },
+  robots: { index: true, follow: true },
+  verification: {
+    google: "kLMg36unUGCRiCOoNCv8ZTGxivxRnn129Ax3NSqBXPI",
+  },
   openGraph: {
     title: siteContent.meta.title,
     description: siteContent.meta.description,
+    url: "/",
+    siteName: siteConfig.name,
     locale: "pt_BR",
     type: "website",
-    images: [{ url: siteConfig.brand.logoSquare, alt: "Passo a Passo" }],
+    images: [
+      { url: siteConfig.brand.logoSquare, alt: "Passo a Passo Recreação Infantil" },
+    ],
   },
 };
 
@@ -48,12 +56,9 @@ export default function RootLayout({
       <head>
         <MetaPixelHead />
         <GoogleAdsTag />
-        <meta
-          name="google-site-verification"
-          content="kLMg36unUGCRiCOoNCv8ZTGxivxRnn129Ax3NSqBXPI"
-        />
       </head>
       <body className="min-h-screen antialiased">
+        <LocalBusinessJsonLd />
         <MetaPixelNoscript />
         <MetaPixelPageView />
         <Header />

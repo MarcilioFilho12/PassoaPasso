@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Como chegar — Passo a Passo</title>
+    <style>
+      html,
+      body {
+        height: 100%;
+        margin: 0;
+        font-family: system-ui, sans-serif;
+        color: #3d3429;
+        background: #faf8f3;
+      }
+      .wrap {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        min-height: 320px;
+      }
+      .panel {
+        padding: 12px 14px;
+        background: #fff;
+        border-bottom: 1px solid #e8e0d2;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        align-items: center;
+      }
+      .panel label {
+        font-size: 12px;
+        font-weight: 700;
+        color: #5f7540;
+        width: 100%;
+      }
+      .panel input {
+        flex: 1;
+        min-width: 180px;
+        border: 1px solid #e8e0d2;
+        border-radius: 999px;
+        padding: 10px 14px;
+        font-size: 14px;
+      }
+      .panel button {
+        border: 0;
+        border-radius: 999px;
+        background: #5f7540;
+        color: #faf8f3;
+        font-weight: 700;
+        padding: 10px 16px;
+        cursor: pointer;
+      }
+      .panel button:hover {
+        opacity: 0.92;
+      }
+      #status {
+        font-size: 13px;
+        color: #5c5348;
+        padding: 0 14px 10px;
+        min-height: 1.2em;
+      }
+      #map {
+        flex: 1;
+        min-height: 260px;
+      }
+      .error {
+        color: #a66346;
+        font-size: 13px;
+        padding: 12px 14px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <div class="panel">
+        <label for="origin">De onde você sai? (estime o tempo até a Passo a Passo)</label>
+        <input
+          id="origin"
+          type="text"
+          placeholder="Digite seu endereço ou bairro em Garopaba"
+          autocomplete="off"
+        />
+        <button type="button" id="route-btn">Calcular rota</button>
+      </div>
+      <div id="status"></div>
+      <div id="map" aria-label="Mapa"></div>
+    </div>
+
+    <script>
+      const SCHOOL = { lat: -28.0302312, lng: -48.6284887 };
+      const params = new URLSearchParams(window.location.search);
+      const apiKey = params.get("key") || "";
+
+      if (!apiKey) {
+        document.body.innerHTML =
+          '<p class="error">Defina NEXT_PUBLIC_GOOGLE_MAPS_API_KEY na Vercel para ativar o cálculo de rota.</p>';
+      } else {
+        const script = document.createElement("script");
+        script.src =
+          "https://maps.googleapis.com/maps/api/js?key=" +
+          encodeURIComponent(apiKey) +
+          "&libraries=places&callback=initCommutesMap";
+        script.async = true;
+        script.defer = true;
+        document.head.appendChild(script);
+      }
+
+      let map;
+      let directionsService;
+      let directionsRenderer;
+
+      function initCommutesMap() {
+        map = new google.maps.Map(document.getElementById("map"), {
+          center: SCHOOL,
+          zoom: 16,
+          mapTypeControl: false,
+          streetViewControl: false,
+          fullscreenControl: true,
+        });
+
+        new google.maps.Marker({
+          map,
+          position: SCHOOL,
+          title: "Passo a Passo Recreação Infantil",
+        });
+
+        directionsService = new google.maps.DirectionsService();
+        directionsRenderer = new google.maps.DirectionsRenderer({ map });
+
+        const input = document.getElementById("origin");
+        const autocomplete = new google.maps.places.Autocomplete(input, {
+          fields: ["geometry", "name", "formatted_address"],
+          componentRestrictions: { country: "br" },
+          bounds: {
+            north: SCHOOL.lat + 0.35,
+            south: SCHOOL.lat - 0.35,
+            east: SCHOOL.lng + 0.35,
+            west: SCHOOL.lng - 0.35,
+          },
+        });
+
+        document.getElementById("route-btn").addEventListener("click", () => {
+          calcRoute(input.value);
+        });
+
+        autocomplete.addListener("place_changed", () => {
+          const place = autocomplete.getPlace();
+          if (place.geometry && place.geometry.location) {
+            calcRoute(place.geometry.location);
+          }
+        });
+
+        document.getElementById("status").textContent =
+          "Passo a Passo — R. Arlindo Alcebíades de Andrade, Garopaba";
+      }
+
+      function calcRoute(origin) {
+        const status = document.getElementById("status");
+        if (!origin) {
+          status.textContent = "Informe um endereço de partida.";
+          return;
+        }
+        status.textContent = "Calculando…";
+        directionsService.route(
+          {
+            origin,
+            destination: SCHOOL,
+            travelMode: google.maps.TravelMode.DRIVING,
+            unitSystem: google.maps.UnitSystem.METRIC,
+          },
+          (result, statusCode) => {
+            if (statusCode === "OK" && result) {
+              directionsRenderer.setDirections(result);
+              const leg = result.routes[0].legs[0];
+              status.textContent =
+                "Tempo estimado: " +
+                leg.duration.text +
+                " · Distância: " +
+                leg.distance.text;
+            } else {
+              status.textContent =
+                "Não foi possível calcular a rota. Tente outro endereço.";
+            }
+          }
+        );
+      }
+
+      window.initCommutesMap = initCommutesMap;
+    </script>
+  </body>
+</html>

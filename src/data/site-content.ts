@@ -8,12 +8,12 @@ const placeholder = (label: string) => ({
 
 export const siteContent: SiteContent = {
   meta: {
-    title: "Passo a Passo | Recreação Infantil",
+    title: "Passo a Passo | Recreação Infantil em Garopaba",
     description:
-      "Espaço acolhedor de recreação infantil para crianças até 12 anos. Acolhimento, vínculo, natureza, leveza e segurança emocional. Aqui a infância é tratada com carinho e afeto.",
+      "Recreação infantil em Garopaba (SC) para crianças até 12 anos, no período vespertino. Brincar livre, natureza, acolhimento e segurança emocional. Vagas limitadas.",
   },
   hero: {
-    eyebrow: "Recreação infantil com acolhimento e afeto",
+    eyebrow: "Recreação infantil em Garopaba, com acolhimento e afeto",
     title:
       "Um ambiente pensado para que cada criança se sinta segura, livre e principalmente acolhida.",
     subtitle:
@@ -140,7 +140,7 @@ export const siteContent: SiteContent = {
       { label: "Período", value: "Vespertino, vagas limitadas para manter o olhar individual." },
       {
         label: "Endereço",
-        value: "R. Arlindo Alcebíades de Andrade",
+        value: "R. Arlindo Alcebíades de Andrade, Garopaba — SC",
       },
       {
         label: "Alimentação",
@@ -162,7 +162,7 @@ export const siteContent: SiteContent = {
   },
   footer: {
     tagline: siteConfig.anchorPhrase,
-    address: "R. Arlindo Alcebíades de Andrade",
+    address: "R. Arlindo Alcebíades de Andrade, Garopaba — SC",
     social: {
       instagram: siteConfig.urls.instagram,
       whatsapp: siteConfig.urls.whatsapp,

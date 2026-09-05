@@ -1,19 +1,28 @@
+export const siteUrl = (
+  process.env.NEXT_PUBLIC_SITE_URL ?? "https://passoa-passo.vercel.app"
+).replace(/\/$/, "");
+
 export const siteConfig = {
   name: "Passo a Passo",
   tagline: "Recreação Infantil",
+  siteUrl,
+  location: {
+    city: "Garopaba",
+    region: "Santa Catarina",
+    street: "R. Arlindo Alcebíades de Andrade",
+    lat: -28.0302312,
+    lng: -48.6284887,
+  },
   anchorPhrase: "Aqui a infância é tratada com carinho e afeto.",
   keywords: [
-    "acolhimento",
-    "infância",
-    "respeito",
-    "vínculo",
-    "leveza",
-    "natureza",
-    "autonomia",
-    "pertencimento",
-    "presença",
-    "segurança",
-    "afeto",
+    "recreação infantil Garopaba",
+    "espaço infantil Garopaba",
+    "recreação vespertino Garopaba",
+    "brincar livre Garopaba",
+    "espaço para crianças Garopaba",
+    "recreação infantil Santa Catarina",
+    "acolhimento infantil Garopaba",
+    "atividades infantis sem telas",
   ],
   urls: {
     whatsapp:
