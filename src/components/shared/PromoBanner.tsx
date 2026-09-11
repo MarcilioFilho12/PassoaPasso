@@ -7,13 +7,13 @@ import { siteConfig } from "@/constants/site";
 import { trackLead } from "@/lib/track-lead";
 import { softEase } from "@/lib/motion";
 
-const STORAGE_KEY = "promo-banner:periodo-integral-8-set-2026";
-const BANNER_SRC = "/banners/periodo-integral-8-setembro.jpg";
-const BANNER_WIDTH = 776;
+const STORAGE_KEY = "promo-banner:matriculas-abertas-2026";
+const BANNER_SRC = "/banners/matriculas-abertas.jpg";
+const BANNER_WIDTH = 768;
 const BANNER_HEIGHT = 1024;
 
 const whatsappHref = `${siteConfig.urls.whatsapp}?text=${encodeURIComponent(
-  "Olá! Vi o aviso do período integral no dia 8 de setembro e quero garantir a vaga.",
+  "Olá! Vi que as matrículas estão abertas e quero reservar uma vaga.",
 )}`;
 
 export function PromoBanner() {
@@ -52,7 +52,7 @@ export function PromoBanner() {
   }, [open, dismiss]);
 
   function handleCta() {
-    trackLead("Banner Período Integral");
+    trackLead("Banner Matrículas Abertas");
     dismiss();
   }
 
@@ -83,7 +83,7 @@ export function PromoBanner() {
             className="relative z-10 my-auto w-fit max-w-full"
           >
             <h2 id={titleId} className="sr-only">
-              Dia 8 de setembro é período integral. Vagas limitadas.
+              Matrículas abertas. Vagas limitadas. Entre em contato para reservar sua vaga.
             </h2>
 
             <button
@@ -116,7 +116,7 @@ export function PromoBanner() {
               >
                 <Image
                   src={BANNER_SRC}
-                  alt="Passo a Passo Recreação Infantil. Dia 8 de setembro é período integral, com almoço e lanche inclusos. Vagas limitadas. Fale conosco no WhatsApp."
+                  alt="Passo a Passo Recreação Infantil. Matrículas abertas, vagas limitadas. Horário de segunda a sexta, das 13h às 18h, com lanche incluso. Fale conosco no WhatsApp."
                   width={BANNER_WIDTH}
                   height={BANNER_HEIGHT}
                   priority

@@ -86,8 +86,8 @@ export const siteContent: SiteContent = {
       {
         label: "Leitura",
         image: {
-          src: "/Dia-D-da-Leitura.jpg",
-          alt: "Criança lendo e vivendo o Dia D da Leitura — Passo a Passo Recreação Infantil",
+          src: "/leitura.jpg",
+          alt: "Criança lendo no cantinho da leitura — Passo a Passo Recreação Infantil",
         },
       },
       {
