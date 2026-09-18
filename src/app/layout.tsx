@@ -4,9 +4,6 @@ import { siteContent } from "@/data/site-content";
 import { siteConfig, siteUrl } from "@/constants/site";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
-import { MetaPixelHead, MetaPixelNoscript } from "@/components/analytics/MetaPixelHead";
-import { MetaPixelPageView } from "@/components/analytics/MetaPixelPageView";
-import { GoogleAdsTag } from "@/components/analytics/GoogleAdsTag";
 import { LocalBusinessJsonLd } from "@/components/analytics/LocalBusinessJsonLd";
 import { PromoBanner } from "@/components/shared/PromoBanner";
 import "./globals.css";
@@ -40,9 +37,6 @@ export const metadata: Metadata = {
     ],
     apple: { url: "/apple-icon.png", sizes: "180x180" },
   },
-  verification: {
-    google: "kLMg36unUGCRiCOoNCv8ZTGxivxRnn129Ax3NSqBXPI",
-  },
   openGraph: {
     title: siteContent.meta.title,
     description: siteContent.meta.description,
@@ -63,14 +57,8 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="pt-BR" className={`${nunito.variable} ${baloo.variable}`}>
-      <head>
-        <MetaPixelHead />
-        <GoogleAdsTag />
-      </head>
       <body className="min-h-screen antialiased">
         <LocalBusinessJsonLd />
-        <MetaPixelNoscript />
-        <MetaPixelPageView />
         <Header />
         <main>{children}</main>
         <Footer />
